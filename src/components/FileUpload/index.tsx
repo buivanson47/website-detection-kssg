@@ -21,11 +21,11 @@ const FileUpload = () => {
 		console.log('run');
 
 		let data = new FormData();
-		data.append(
-			'data',
-			'{"auth":{"api_key": "b67e4cf9a2a58360392187502a57572f", "api_secret": "ce1ad26c99c2cbb93a8742268aea8b46960467c2"}, "wait":true}',
-		);
-		data.append('upload', currentImage);
+		// data.append(
+		// 	'data',
+		// 	'{"auth":{"api_key": "b67e4cf9a2a58360392187502a57572f", "api_secret": "ce1ad26c99c2cbb93a8742268aea8b46960467c2"}, "wait":true}',
+		// );
+		data.append('image', currentImage);
 
 		uploadFile(data)
 			.then((res) => {
@@ -54,6 +54,7 @@ const FileUpload = () => {
 						</div> */}
 					</div>
 				)}
+				<button onClick={onSubmit}>Submit</button>
 			</div>
 		</div>
 	);
