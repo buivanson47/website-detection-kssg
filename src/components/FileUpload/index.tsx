@@ -4,10 +4,13 @@ import React, { useState } from 'react';
 import { UploadInput } from './UploadInput';
 import { TextTitle } from '@/components';
 import Image from 'next/image';
+import toast from 'react-hot-toast';
+import { Spinner } from '../Spinner';
 
 const FileUpload = () => {
 	const [currentImage, setCurrentImage] = useState<File>();
 	const [previewImage, setPreviewImage] = useState<string>('');
+	const [resImage, setResImage] = useState<string>('');
 
 	const { mutateAsync: uploadFile, isLoading } = useUploadFile();
 
@@ -15,46 +18,59 @@ const FileUpload = () => {
 		const selectedFiles = event.target.files as FileList;
 		setCurrentImage(selectedFiles?.[0]);
 		setPreviewImage(URL.createObjectURL(selectedFiles?.[0]));
+		setResImage('');
 	};
 
 	const onSubmit = () => {
-		console.log('run');
-
 		let data = new FormData();
-		// data.append(
-		// 	'data',
-		// 	'{"auth":{"api_key": "b67e4cf9a2a58360392187502a57572f", "api_secret": "ce1ad26c99c2cbb93a8742268aea8b46960467c2"}, "wait":true}',
-		// );
 		data.append('image', currentImage);
 
 		uploadFile(data)
 			.then((res) => {
-				console.log('res', res);
+				if (isEmpty(res.imagePath)) {
+					toast.error('Error: imagePath is empty');
+					return;
+				}
+				setResImage(res.imagePath ?? '');
 			})
 			.catch((error) => {
+				toast.error('Error: please try again');
 				console.log('error', error);
 			});
 	};
 
 	return (
 		<div className="flex flex-1 md:flex-row flex-col p-4">
-			<div className="w-1/2 justify-center flex">
+			<div className="w-full justify-center flex">
 				<UploadInput onChange={selectImage} />
 			</div>
-			<div className="w-1/2 justify-center flex md:pt-0 pt-4">
-				{!isEmpty(previewImage) && (
-					<div className="max-w-[450px]">
-						<div>
-							<TextTitle>Preview Image: </TextTitle>
-							<img className="rounded-lg mt-2" src={previewImage} alt="Preview" />
+			<div className="w-full justify-center flex md:pt-0 pt-4">
+				<div className="flex-col flex flex-1 items-center">
+					{!isEmpty(previewImage) && (
+						<div className="max-w-[450px]">
+							<div>
+								<TextTitle>Preview Image: </TextTitle>
+								<img className="rounded-lg mt-2" src={previewImage} alt="Preview" />
+							</div>
+							<button
+								onClick={onSubmit}
+								disabled={isLoading}
+								className="flex w-full mt-4 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+							>
+								{isLoading ? <Spinner /> : <p>Submit</p>}
+							</button>
+
+							{!isEmpty(resImage) && (
+								<div className="mt-8">
+									<TextTitle>Response Image: </TextTitle>
+									<img className="rounded-lg mt-2" src={resImage} alt="Preview" />
+
+									{/* <img className="rounded-lg mt-2" src={previewImage} alt="Preview" /> */}
+								</div>
+							)}
 						</div>
-						{/* <div className="mt-8">
-							<TextTitle>Preview Image: </TextTitle>
-							<img className="rounded-lg mt-2" src={previewImage} alt="Preview" />
-						</div> */}
-					</div>
-				)}
-				<button onClick={onSubmit}>Submit</button>
+					)}
+				</div>
 			</div>
 		</div>
 	);
