@@ -15,4 +15,5 @@ export interface FileUploadResponse {
 	// kraked_height?: number;
 	// success?: boolean;
 	imagePath?: string;
+	result?: number;
 }

@@ -2,6 +2,8 @@ import { AuthRequest, FileUpload, FileUploadResponse, Response } from '@/model';
 import ApiManager from './APIManager';
 import Endpoint from './Endpoint';
 import axios, { AxiosRequestConfig } from 'axios';
+import { useStore } from 'zustand';
+import { useApiDomain } from '@/store';
 
 interface ApiService {
 	get<R, D = any>(url: string, config?: AxiosRequestConfig<D>): Promise<R>;
@@ -37,13 +39,10 @@ class API {
 	publicClient: HTTPClient;
 
 	constructor() {
-		// const apiBaseUrl = Config.API_BASE_URL ?? "";
-		const apiBaseUrl = '';
-
-		const instance = ApiManager.getInstance(apiBaseUrl);
+		const instance = ApiManager.getInstance();
 		this.client = new HTTPClient(instance);
 
-		const publicInstance = ApiManager.getInstance(apiBaseUrl, false);
+		const publicInstance = ApiManager.getInstance(false);
 		this.publicClient = new HTTPClient(publicInstance);
 	}
 

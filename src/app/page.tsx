@@ -3,8 +3,9 @@ import { FileUpload } from '@/components';
 
 export default function Home() {
 	return (
-		<main className="flex min-h-screen flex-1">
+		<div className="flex flex-1">
+			{/* <FileUpload /> */}
 			<FileUpload />
-		</main>
+		</div>
 	);
 }

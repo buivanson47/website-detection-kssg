@@ -1,3 +1,4 @@
+'use client';
 import { useUploadFile } from '@/network';
 import { isEmpty } from 'lodash';
 import React, { useState } from 'react';
@@ -6,11 +7,12 @@ import { TextTitle } from '@/components';
 import Image from 'next/image';
 import toast from 'react-hot-toast';
 import { Spinner } from '../Spinner';
+import { FileUploadResponse } from '@/model';
 
 const FileUpload = () => {
 	const [currentImage, setCurrentImage] = useState<File>();
 	const [previewImage, setPreviewImage] = useState<string>('');
-	const [resImage, setResImage] = useState<string>('');
+	const [resImage, setResImage] = useState<FileUploadResponse | null>();
 
 	const { mutateAsync: uploadFile, isLoading } = useUploadFile();
 
@@ -18,7 +20,7 @@ const FileUpload = () => {
 		const selectedFiles = event.target.files as FileList;
 		setCurrentImage(selectedFiles?.[0]);
 		setPreviewImage(URL.createObjectURL(selectedFiles?.[0]));
-		setResImage('');
+		setResImage(null);
 	};
 
 	const onSubmit = () => {
@@ -31,7 +33,7 @@ const FileUpload = () => {
 					toast.error('Error: imagePath is empty');
 					return;
 				}
-				setResImage(res.imagePath ?? '');
+				setResImage(res);
 			})
 			.catch((error) => {
 				toast.error('Error: please try again');
@@ -60,10 +62,13 @@ const FileUpload = () => {
 								{isLoading ? <Spinner /> : <p>Submit</p>}
 							</button>
 
-							{!isEmpty(resImage) && (
+							{!isEmpty(resImage?.imagePath) && (
 								<div className="mt-8">
 									<TextTitle>Response Image: </TextTitle>
-									<img className="rounded-lg mt-2" src={resImage} alt="Preview" />
+									<img className="rounded-lg mt-2" src={resImage?.imagePath} alt="Preview" />
+									<p className="text-white mt-2">
+										Độ rộng NT: {resImage?.result?.toLocaleString('Vi')} mm
+									</p>
 
 									{/* <img className="rounded-lg mt-2" src={previewImage} alt="Preview" /> */}
 								</div>

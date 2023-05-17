@@ -1,6 +1,7 @@
 import { Inter } from 'next/font/google';
 import MasterProvider from './MasterProvider';
 import './globals.css';
+import { Navbar, Sidebar } from '@/components';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -14,7 +15,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 		<html lang="en">
 			<head />
 			<body className="bg-slate-900 text-slate-400">
-				<MasterProvider>{children}</MasterProvider>
+				<MasterProvider>
+					<Navbar />
+					<Sidebar />
+					<main className="mt-[57px] p-4 sm:ml-64 flex min-h-screen flex-1">{children}</main>
+				</MasterProvider>
 			</body>
 		</html>
 	);
