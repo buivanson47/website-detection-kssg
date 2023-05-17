@@ -3,8 +3,8 @@ import { useUploadFile } from '@/network';
 import { isEmpty } from 'lodash';
 import React, { useState } from 'react';
 import { UploadInput } from './UploadInput';
-import { TextTitle } from '@/components';
-import Image from 'next/image';
+import { FullScreenImage, TextTitle } from '@/components';
+// import Image from 'next/image';
 import toast from 'react-hot-toast';
 import { Spinner } from '../Spinner';
 import { FileUploadResponse } from '@/model';
@@ -52,7 +52,7 @@ const FileUpload = () => {
 						<div className="max-w-[450px]">
 							<div>
 								<TextTitle>Preview Image: </TextTitle>
-								<img className="rounded-lg mt-2" src={previewImage} alt="Preview" />
+								<FullScreenImage className="rounded-lg mt-2" src={previewImage} alt="Preview" />
 							</div>
 							<button
 								onClick={onSubmit}

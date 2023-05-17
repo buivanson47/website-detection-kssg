@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useApiDomain } from '@/store';
 import toast from 'react-hot-toast';
 import { isEmpty } from 'lodash';
@@ -23,6 +23,8 @@ const ApiDomain = () => {
 		toast.success('save success');
 	};
 
+	const disabledSave = useMemo(() => apiDomain === domain, [apiDomain, domain]);
+
 	return (
 		<div className="w-full">
 			<div className="mb-2">
@@ -44,8 +46,13 @@ const ApiDomain = () => {
 
 				<button
 					type="submit"
-					className="inline-flex items-center py-2.5 px-12 ml-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+					className={`inline-flex items-center py-2.5 px-12 ml-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 ${
+						disabledSave
+							? 'bg-blue-400 dark:bg-blue-500 cursor-not-allowed hover:bg-blue-500 dark:hover:bg-blue-500'
+							: ''
+					}`}
 					onClick={onSave}
+					disabled={disabledSave}
 				>
 					Save
 				</button>

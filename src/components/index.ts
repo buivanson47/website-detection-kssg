@@ -3,3 +3,4 @@ export * from './TextTitle';
 export * from './Navbar';
 export * from './Sidebar';
 export * from './Spinner';
+export * from './FullScreenImage';
