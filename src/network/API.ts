@@ -51,8 +51,8 @@ class API {
 		return this.publicClient.post<Response<unknown>>(Endpoint.LOGIN, params);
 	};
 
-	uploadFile = (params: FileUpload): Promise<Response<FileUploadResponse>> => {
-		return this.publicClient.post<Response<FileUploadResponse>>(Endpoint.UPLOAD, params);
+	uploadFile = (params: FileUpload): Promise<FileUploadResponse> => {
+		return this.publicClient.post<FileUploadResponse>(Endpoint.UPLOAD, params);
 	};
 }
 
