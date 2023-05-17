@@ -23,6 +23,9 @@ const UserContent = () => {
 		],
 		[],
 	);
+
+	return null;
+
 	return (
 		<div className="flex items-center">
 			<div className="flex items-center ml-3">
