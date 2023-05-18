@@ -1,7 +1,8 @@
 'use client';
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 import { LocalizedStrings } from 'react-localization';
 import translations from './translations';
+import { useAppLanguages } from '@/store';
 
 export const DEFAULT_LANGUAGE = 'en';
 
@@ -18,11 +19,16 @@ export const LocalizationContext = createContext<LocalizationContextType>({
 });
 
 export const LocalizationProvider = ({ children }: { children: React.ReactNode }) => {
+	const { savedLanguage, setSavedLanguage } = useAppLanguages();
 	const [appLanguage, setAppLanguage] = useState(DEFAULT_LANGUAGE);
 
+	useEffect(() => {
+		translations.setLanguage(savedLanguage);
+		setAppLanguage(savedLanguage);
+	}, [savedLanguage]);
+
 	const setLanguage = (language: string) => {
-		translations.setLanguage(language);
-		setAppLanguage(language);
+		setSavedLanguage(language);
 	};
 
 	return (
