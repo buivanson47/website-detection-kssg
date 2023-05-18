@@ -1,22 +1,26 @@
+'use client';
 import { Dashboard, User } from '@/assets/icons';
+import { useLocalization } from '@/localization';
 import Link from 'next/link';
 import React, { useMemo } from 'react';
 
 const Sidebar = () => {
+	const { translations, appLanguage } = useLocalization();
+
 	const dashboardMenu = useMemo(
 		() => [
 			{
 				link: '#',
 				icon: Dashboard,
-				title: 'Dashboard',
+				title: translations.getString('sidebar.home'),
 			},
 			{
 				link: '/user/settings',
 				icon: User,
-				title: 'Settings',
+				title: translations.getString('sidebar.config'),
 			},
 		],
-		[],
+		[appLanguage],
 	);
 
 	return (

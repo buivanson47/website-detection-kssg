@@ -2,18 +2,21 @@
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Toaster } from 'react-hot-toast';
+import { LocalizationProvider } from '@/localization';
 
 const queryClient = new QueryClient();
 
-const MasterProvider = ({ children, theme = 'light' }: { children: React.ReactNode; theme?: AppTheme }) => {
+const MasterProvider = ({ children }: { children: React.ReactNode }) => {
 	return (
-		<QueryClientProvider client={queryClient}>
-			{children}
+		<LocalizationProvider>
+			<QueryClientProvider client={queryClient}>
+				{children}
 
-			<div>
-				<Toaster />
-			</div>
-		</QueryClientProvider>
+				<div>
+					<Toaster />
+				</div>
+			</QueryClientProvider>
+		</LocalizationProvider>
 	);
 };
 

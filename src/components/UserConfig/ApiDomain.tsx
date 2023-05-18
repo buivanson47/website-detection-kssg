@@ -4,10 +4,12 @@ import { useApiDomain } from '@/store';
 import toast from 'react-hot-toast';
 import { isEmpty } from 'lodash';
 import { shallow } from 'zustand/shallow';
+import { useLocalization } from '@/localization';
 
 const ApiDomain = () => {
 	const [apiDomain, setApiDomain] = useApiDomain((state) => [state.apiDomain, state.setApiDomain], shallow);
 	const [domain, setDomain] = useState<string>('');
+	const { translations } = useLocalization();
 
 	useEffect(() => {
 		setDomain(apiDomain);
@@ -28,7 +30,9 @@ const ApiDomain = () => {
 	return (
 		<div className="w-full">
 			<div className="mb-2">
-				<label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">API Domain</label>
+				<label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+					{translations.getString('config.apiDomain')}
+				</label>
 			</div>
 			<div className="flex w-full h-10">
 				<div className="relative w-full">
@@ -36,7 +40,7 @@ const ApiDomain = () => {
 					<input
 						type="text"
 						className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 h-full"
-						placeholder="API Domain"
+						placeholder={translations.getString('config.apiDomain')}
 						required
 						// defaultValue={domain}
 						value={domain}
@@ -54,7 +58,7 @@ const ApiDomain = () => {
 					onClick={onSave}
 					disabled={disabledSave}
 				>
-					Save
+					{translations.getString('save')}
 				</button>
 			</div>
 		</div>
