@@ -66,7 +66,7 @@ const FileUpload = () => {
 								<div className="mt-8">
 									<TextTitle>Response Image: </TextTitle>
 									<img className="rounded-lg mt-2" src={resImage?.imagePath} alt="Preview" />
-									<p className="text-white mt-2">
+									<p className="mt-2 text-gray-900 dark:text-white">
 										Độ rộng NT: {resImage?.result?.toLocaleString('Vi')} mm
 									</p>
 

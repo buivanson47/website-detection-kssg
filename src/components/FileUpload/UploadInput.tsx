@@ -24,12 +24,12 @@ const UploadInput = (props: UploadInputProps) => {
 							clipRule="evenodd"
 						/>
 					</svg>
-					<div className="mt-4 flex text-sm leading-6 text-white">
+					<div className="mt-4 flex text-sm leading-6  text-gray-900 dark:text-white">
 						<label
 							htmlFor="file-upload"
-							className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
+							className="relative cursor-pointer rounded-md  bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
 						>
-							<span className="px-2">Upload a file</span>
+							<span className="px-2 ">Upload a file</span>
 							<input
 								id="file-upload"
 								name="file-upload"
@@ -39,9 +39,9 @@ const UploadInput = (props: UploadInputProps) => {
 								onChange={onChange}
 							/>
 						</label>
-						<p className="pl-1">or drag and drop</p>
+						<p className="pl-1 text-gray-900 dark:text-white">or drag and drop</p>
 					</div>
-					<p className="text-xs leading-5 text-white mt-1">PNG, JPG, GIF up to 10MB</p>
+					<p className="text-xs leading-5 text-gray-900 dark:text-white mt-1">PNG, JPG, GIF up to 10MB</p>
 				</div>
 			</div>
 		</div>
