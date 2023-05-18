@@ -18,7 +18,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				<MasterProvider>
 					<Navbar />
 					<Sidebar />
-					<main className="mt-[57px] p-4 sm:ml-64 flex min-h-screen flex-1">{children}</main>
+					<main className="mt-[57px] p-4 sm:ml-64 flex flex-1">{children}</main>
 				</MasterProvider>
 			</body>
 		</html>

@@ -7,44 +7,35 @@ interface UploadInputProps {
 
 const UploadInput = (props: UploadInputProps) => {
 	const { onChange } = props;
+
 	return (
-		<div className="w-[280px]">
-			<TextTitle>Select Image:</TextTitle>
-			<div className="mt-2 flex justify-center rounded-lg border border-dashed border-white/25 px-6 py-10">
-				<div className="text-center">
-					<svg
-						className="mx-auto h-12 w-12 text-gray-300"
-						viewBox="0 0 24 24"
-						fill="currentColor"
-						aria-hidden="true"
-					>
-						<path
-							fillRule="evenodd"
-							d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z"
-							clipRule="evenodd"
-						/>
-					</svg>
-					<div className="mt-4 flex text-sm leading-6  text-gray-900 dark:text-white">
-						<label
-							htmlFor="file-upload"
-							className="relative cursor-pointer rounded-md  bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
-						>
-							<span className="px-2 ">Upload a file</span>
-							<input
-								id="file-upload"
-								name="file-upload"
-								type="file"
-								className="sr-only"
-								accept="image/*"
-								onChange={onChange}
-							/>
-						</label>
-						<p className="pl-1 text-gray-900 dark:text-white">or drag and drop</p>
-					</div>
-					<p className="text-xs leading-5 text-gray-900 dark:text-white mt-1">PNG, JPG, GIF up to 10MB</p>
-				</div>
+		<label
+			htmlFor="dropzone-file"
+			className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+		>
+			<div className="flex flex-col items-center justify-center pt-5 pb-6">
+				<svg
+					aria-hidden="true"
+					className="w-10 h-10 mb-3 text-gray-400"
+					fill="none"
+					stroke="currentColor"
+					viewBox="0 0 24 24"
+					xmlns="http://www.w3.org/2000/svg"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+					></path>
+				</svg>
+				<p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
+					<span className="font-semibold">Click to upload</span> or drag and drop
+				</p>
+				<p className="text-xs text-gray-500 dark:text-gray-400">PNG, JPG</p>
 			</div>
-		</div>
+			<input id="dropzone-file" type="file" className="hidden" accept="image/*" onChange={onChange} />
+		</label>
 	);
 };
 
