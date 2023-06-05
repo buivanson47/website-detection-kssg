@@ -8,6 +8,10 @@ const vi: object = {
 		home: 'Trang chủ',
 		config: 'Thiết lập',
 	},
+	predict: 'Chẩn đoán',
+	clear: 'Xóa',
+	previewImage: 'Ảnh đã chọn',
+	resultImage: 'Ảnh đã chẩn đoán',
 };
 
 export default vi;

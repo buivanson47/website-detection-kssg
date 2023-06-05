@@ -8,6 +8,10 @@ const en: object = {
 		home: 'Home',
 		config: 'Config',
 	},
+	predict: 'Predict',
+	clear: 'Clear',
+	previewImage: 'Preview Image',
+	resultImage: 'Result Image',
 };
 
 export default en;
