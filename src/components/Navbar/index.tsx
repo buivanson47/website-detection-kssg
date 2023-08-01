@@ -30,8 +30,8 @@ const Navbar = () => {
 							</svg>
 						</button>
 						<a href="/" className="flex ml-2 md:mr-24 ">
-							<img src="/hust-logo.png" className="h-10 mr-3 hidden md:flex" alt="Hust" />
-							<img src="/dai-hoc-y-logo.png" className="h-10 mr-3 hidden md:flex" alt="Dai hoc Y HN" />
+							<img src="/hust-logo.png" className="h-12 mr-3 hidden md:flex" alt="Hust" />
+							<img src="/dai-hoc-y-logo.png" className="h-12 mr-3 hidden md:flex" alt="Dai hoc Y HN" />
 						</a>
 					</div>
 					<div className="absolute left-[calc(50%-200px)] w-full">
