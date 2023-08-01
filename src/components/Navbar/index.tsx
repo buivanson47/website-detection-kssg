@@ -29,16 +29,15 @@ const Navbar = () => {
 								></path>
 							</svg>
 						</button>
-						{/* <a href="https://flowbite.com" className="flex ml-2 md:mr-24">
-							<img
-								src="https://flowbite.com/docs/images/logo.svg"
-								className="h-8 mr-3"
-								alt="FlowBite Logo"
-							/>
-							<span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">
-								Flowbite
-							</span>
-						</a> */}
+						<a href="/" className="flex ml-2 md:mr-24 ">
+							<img src="/hust-logo.png" className="h-10 mr-3 hidden md:flex" alt="Hust" />
+							<img src="/dai-hoc-y-logo.png" className="h-10 mr-3 hidden md:flex" alt="Dai hoc Y HN" />
+						</a>
+					</div>
+					<div className="absolute left-[calc(50%-200px)] w-full">
+						<p className="font-bold uppercase whitespace-nowrap overflow-hidden text-ellipsis w-full text-gray-900 dark:text-white">
+							Automatic measurements nuchal translucency
+						</p>
 					</div>
 					<UserContent />
 				</div>
